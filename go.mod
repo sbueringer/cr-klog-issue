@@ -7,7 +7,7 @@ require (
 	k8s.io/api v0.23.3
 	k8s.io/apimachinery v0.23.3
 	k8s.io/component-base v0.23.3
-	k8s.io/klog/v2 v2.40.1
+	k8s.io/klog/v2 v2.40.2-0.20220221072012-e0de69075b14
 	sigs.k8s.io/cluster-api v1.1.1
 	sigs.k8s.io/controller-runtime v0.11.0
 )
@@ -63,4 +63,4 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
-replace k8s.io/klog/v2 => github.com/pohly/klog/v2 v2.0.0-20220214184254-5534cf8e7cb5
+replace k8s.io/klog/v2 => github.com/pohly/klog/v2 v2.40.2-0.20220221072012-e0de69075b14
