@@ -6,6 +6,7 @@ import (
 	_ "net/http/pprof"
 	"os"
 
+	"k8s.io/klog/v2"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
 	// +kubebuilder:scaffold:imports
@@ -89,11 +90,14 @@ func (r *reconciler) Reconcile(ctx context.Context, _ reconcile.Request) (reconc
 
 	log := ctrl.LoggerFrom(ctx)
 
-	log.V(0).Info("Verbosity 0")
-	log.V(1).Info("Verbosity 1")
-	log.V(2).Info("Verbosity 2")
-	log.V(3).Info("Verbosity 3")
-	log.V(4).Info("Verbosity 4")
+	log.V(0).Info("Test log", "pod", klog.KRef("default", "pod-1"))
+	log.V(0).Info("Test log with .String()", "pod", klog.KRef("default", "pod-1").String())
+
+	//log.V(0).Info("Verbosity 0")
+	//log.V(1).Info("Verbosity 1")
+	//log.V(2).Info("Verbosity 2")
+	//log.V(3).Info("Verbosity 3")
+	//log.V(4).Info("Verbosity 4")
 
 	return reconcile.Result{}, nil
 }
