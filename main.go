@@ -16,7 +16,6 @@ import (
 	cliflag "k8s.io/component-base/cli/flag"
 	"k8s.io/component-base/logs"
 	_ "k8s.io/component-base/logs/json/register"
-	"k8s.io/klog/v2/klogr"
 	"sigs.k8s.io/cluster-api/version"
 	ctrl "sigs.k8s.io/controller-runtime"
 )
@@ -51,11 +50,11 @@ func main() {
 	// The JSON log format requires the Klog format in klog, otherwise log lines
 	// are serialized twice, e.g.:
 	// { ... "msg":"controller/cluster \"msg\"=\"Starting workers\"\n"}
-	if logOptions.Config.Format == logs.JSONLogFormat {
-		ctrl.SetLogger(klogr.NewWithOptions(klogr.WithFormat(klogr.FormatKlog)))
-	} else {
-		ctrl.SetLogger(klogr.New())
-	}
+	//if logOptions.Config.Format == logs.JSONLogFormat {
+		ctrl.SetLogger(klog.Background())
+	//} else {
+	//	ctrl.SetLogger(klogr.New())
+	//}
 
 	mgr, err := ctrl.NewManager(ctrl.GetConfigOrDie(), ctrl.Options{
 		Scheme: scheme,
@@ -93,11 +92,11 @@ func (r *reconciler) Reconcile(ctx context.Context, _ reconcile.Request) (reconc
 	log.V(0).Info("Test log", "pod", klog.KRef("default", "pod-1"))
 	log.V(0).Info("Test log with .String()", "pod", klog.KRef("default", "pod-1").String())
 
-	//log.V(0).Info("Verbosity 0")
-	//log.V(1).Info("Verbosity 1")
-	//log.V(2).Info("Verbosity 2")
-	//log.V(3).Info("Verbosity 3")
-	//log.V(4).Info("Verbosity 4")
+	log.V(0).Info("Verbosity 0")
+	log.V(1).Info("Verbosity 1")
+	log.V(2).Info("Verbosity 2")
+	log.V(3).Info("Verbosity 3")
+	log.V(4).Info("Verbosity 4")
 
 	return reconcile.Result{}, nil
 }

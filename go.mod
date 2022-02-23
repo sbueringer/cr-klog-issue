@@ -63,4 +63,5 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
-replace k8s.io/klog/v2 => github.com/pohly/klog/v2 v2.40.2-0.20220221072012-e0de69075b14
+//replace k8s.io/klog/v2 => github.com/pohly/klog/v2 v2.40.2-0.20220221072012-e0de69075b14
+replace k8s.io/klog/v2 => github.com/pohly/klog/v2 v2.40.2-0.20220221122325-56f831b06c74
